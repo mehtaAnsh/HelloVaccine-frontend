@@ -5,14 +5,16 @@ import img from './img.jpg';
 
 const ThankYou = props => {
 	const history = useHistory();
+
 	useEffect(() => {
-		//if (!props.location.state) history.push('/');
+		if (!props.location.state) history.push('/');
+		// eslint-disable-next-line
 	}, []);
 	return (
 		<div style={{ minHeight: '80vh', paddingTop: '5vh' }}>
 			<Container>
 				<Row className="flex justify-content-center">
-					<img src={img} alt="Image" style={{ maxHeight: '30vh' }} />
+					<img src={img} alt="placeholder-image" style={{ maxHeight: '30vh' }} />
 				</Row>
 				<Row className="flex justify-content-center">
 					<Col md="9">

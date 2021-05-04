@@ -12,6 +12,7 @@ const Verify = props => {
 
 	useEffect(() => {
 		if (!props.location.state) history.push('/');
+		// eslint-disable-next-line
 	}, []);
 
 	const submitForm = async () => {
