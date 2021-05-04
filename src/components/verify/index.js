@@ -21,7 +21,7 @@ const Verify = props => {
 			.then(res => {
 				if (res.status === 200) {
 					toast.success('Verified!');
-					setTimeout(() => history.push('/thankYou', { status: true }, 3000));
+					setTimeout(() => history.push('/thankYou', { status: true }), 3000);
 				}
 			})
 			.catch(() => {

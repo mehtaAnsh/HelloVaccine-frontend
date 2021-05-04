@@ -20,7 +20,7 @@ const ThankYou = props => {
 					<Col md="9">
 						<h3 style={{ textAlign: 'center', marginTop: '10vh' }}>
 							Thank you for subscribing.
-							<br /> Check your email for access. <br />
+							<br /> Check your email for notifications. <br />
 							Also, share on WhatsApp via the icon above.
 						</h3>
 					</Col>
