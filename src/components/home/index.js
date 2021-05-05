@@ -11,10 +11,15 @@ const Home = () => {
 	const [email, setEmail] = useState('');
 	const [pin, setPin] = useState();
 	const [date, setDate] = useState(today);
+	const [age, setAge] = useState();
 
 	const history = useHistory();
 
 	const submitForm = async () => {
+		if (!email || !pin || !date || !age) {
+			toast.error('Fill all the values.');
+			return;
+		}
 		if (moment(date).diff(today, 'days') /*diff */ > 7) {
 			toast.error('Please select a date in 7 days.');
 			return;
@@ -26,7 +31,7 @@ const Home = () => {
 		const formattedDate = moment(date).format('DD-MM-YYYY');
 
 		await api
-			.post(`/mail`, { email, pin, date: formattedDate })
+			.post(`/mail`, { email, pin, date: formattedDate, age })
 			.then(res => {
 				if (res.status === 200) {
 					localStorage.setItem('email', email);
@@ -60,7 +65,6 @@ const Home = () => {
 									type="email"
 									id="email"
 									name="email"
-									required
 									placeholder="Enter your e-mail ID"
 								/>
 							</FormGroup>
@@ -73,7 +77,6 @@ const Home = () => {
 									placeholder="Enter a 6-digit pincode"
 									value={pin}
 									onChange={e => setPin(e.target.value)}
-									required
 								/>
 							</FormGroup>
 							<FormGroup>
@@ -82,11 +85,39 @@ const Home = () => {
 									type="date"
 									id="date"
 									name="date"
-									required
 									value={date}
 									onChange={e => setDate(e.target.value)}
 									placeholder="Enter a date for which you want to check the dates"
 								/>
+							</FormGroup>
+							<FormGroup>
+								<Label>Age</Label>
+								<span>
+									<FormGroup check>
+										<Label check>
+											<Input
+												type="radio"
+												name="radio1"
+												value="18"
+												onChange={e => {
+													setAge(e.target.value);
+												}}
+											/>
+											18-45
+										</Label>
+									</FormGroup>
+									<FormGroup check>
+										<Label check>
+											<Input
+												type="radio"
+												name="radio1"
+												value="46"
+												onChange={e => setAge(e.target.value)}
+											/>{' '}
+											45+
+										</Label>
+									</FormGroup>
+								</span>
 							</FormGroup>
 							<Button onClick={submitForm} color="primary">
 								Submit
